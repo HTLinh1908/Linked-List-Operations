@@ -19,7 +19,7 @@ public class LinkedListGUI extends JFrame {
         Panel.setBorder(BorderFactory.createTitledBorder("Linked List"));
         JScrollPane scrollPane = new JScrollPane(Panel);
         scrollPane.setPreferredSize(new Dimension(600, 200));
-        add(scrollPane, BorderLayout.CENTER);
+        add(scrollPane, BorderLayout.EAST);
 
         // Bottom Half - Controls & Functions
         JPanel controlPanel = new JPanel();
