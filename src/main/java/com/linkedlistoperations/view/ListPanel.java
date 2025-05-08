@@ -1,5 +1,4 @@
 package com.linkedlistoperations.view;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -18,7 +17,7 @@ public class ListPanel<T> extends JPanel {
         repaint();  // Trigger a redraw
     }
 
-    @Override
+    // @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (animationSteps == null || animationSteps.isEmpty()) return;
@@ -38,7 +37,7 @@ public class ListPanel<T> extends JPanel {
             g2.drawRoundRect(x, y, 80, 40, 10, 10);
 
             // Draw data
-            String text = String.valueOf(step.getValue());
+            String text = String.valueOf(step.node().getData());
             FontMetrics fm = g2.getFontMetrics();
             int textWidth = fm.stringWidth(text);
             int textX = x + (80 - textWidth) / 2;
@@ -46,7 +45,7 @@ public class ListPanel<T> extends JPanel {
             g2.drawString(text, textX, textY);
 
             // Draw arrow to next node
-            if (step.hasNext()) {
+            if (step.otherNode() != null) {
                 int arrowX = x + 80;
                 int arrowY = y + 20;
                 g2.drawLine(arrowX, arrowY, arrowX + 20, arrowY);

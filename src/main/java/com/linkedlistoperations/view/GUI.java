@@ -61,6 +61,6 @@ public class GUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(LinkedListGUI::new);
+        SwingUtilities.invokeLater(GUI::new);
     }
 }
