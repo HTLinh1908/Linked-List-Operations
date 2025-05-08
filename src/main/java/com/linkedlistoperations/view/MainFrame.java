@@ -1,11 +1,8 @@
-// File: src/main/java/com/linkedlistoperations/view/MainFrame.java
 package com.linkedlistoperations.view;
 import com.linkedlistoperations.controller.ListController;
-import com.linkedlistoperations.view.ControlPanel;
+import com.linkedlistoperations.model.LinkedList;
 import javax.swing.*;
 import java.awt.*;
-import com.linkedlistoperations.controller.ListController;
-import com.linkedlistoperations.model.LinkedList;
 
 public class MainFrame<T> extends JFrame {
     private final ListController<T> controller;
@@ -16,7 +13,6 @@ public class MainFrame<T> extends JFrame {
         this.controller = controller;
         this.listPanel = new ListPanel<>();
         this.controlPanel = new ControlPanel<>(controller, listPanel);
-
         initUI();
     }
 
@@ -25,10 +21,8 @@ public class MainFrame<T> extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 600);
         setLayout(new BorderLayout());
-
         add(listPanel, BorderLayout.CENTER);
         add(controlPanel, BorderLayout.SOUTH);
-
         setLocationRelativeTo(null);
         setVisible(true);
     }

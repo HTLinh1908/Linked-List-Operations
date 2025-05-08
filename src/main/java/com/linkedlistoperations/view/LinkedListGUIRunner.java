@@ -4,7 +4,6 @@ package com.linkedlistoperations.view;
 import com.linkedlistoperations.model.LinkedList;
 import com.linkedlistoperations.controller.ListController;
 import com.linkedlistoperations.view.MainFrame;
-
 import javax.swing.*;
 
 public class LinkedListGUIRunner {
