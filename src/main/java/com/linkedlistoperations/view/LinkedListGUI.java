@@ -2,12 +2,12 @@ import java.awt.*;
 import java.util.LinkedList;
 import javax.swing.*;
 
-public class GUI extends JFrame {
+public class LinkedListGUI extends JFrame {
     private LinkedList<String> linkedList = new LinkedList<>();
     private JPanel Panel;
     private JTextField inputField;
-
-    public GUI() {
+    
+    public LinkedListGUI() {
         setTitle("Linked List GUI");
         setSize(600, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -19,7 +19,7 @@ public class GUI extends JFrame {
         Panel.setBorder(BorderFactory.createTitledBorder("Linked List"));
         JScrollPane scrollPane = new JScrollPane(Panel);
         scrollPane.setPreferredSize(new Dimension(600, 200));
-        add(scrollPane, BorderLayout.EAST);
+        add(scrollPane, BorderLayout.CENTER);
 
         // Bottom Half - Controls & Functions
         JPanel controlPanel = new JPanel();
