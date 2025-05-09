@@ -11,7 +11,19 @@ public class ListController<T> {
 
     public ListController(LinkedList<T> model) {
         this.model = model;
-        model.addListChangeListener(this::refreshView);
+        model.addListChangeListener(new ListChangeListener<T>() {
+            @Override
+            public void onListChanged() {
+                refreshView();
+            }
+        
+            // implement other methods with empty bodies
+            public void onVisit(Node<T> current) {}
+            public void onInsert(Node<T> newNode, Node<T> prevNode) {}
+            public void onDelete(Node<T> deletedNode, Node<T> prevNode) {}
+            public void onLinkChange(Node<T> from, Node<T> to) {}
+            public void onComplete() {}
+        });
     }
 
     public void setView(ListPanel<T> view) {
@@ -92,5 +104,10 @@ public class ListController<T> {
                 view.showMessage("List is empty.");
             }
         }
+    }
+    
+    public void clear() {
+        model.clear();
+        if (view != null) view.showMessage("List cleared.");
     }
 }
