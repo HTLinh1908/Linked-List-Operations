@@ -6,4 +6,5 @@ public interface ListChangeListener<T> {
     void onDelete(Node<T> deletedNode, Node<T> prevNode);
     void onLinkChange(Node<T> from, Node<T> to);
     void onComplete();
+    void onListChanged();
 }

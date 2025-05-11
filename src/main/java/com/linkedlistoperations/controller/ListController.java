@@ -5,13 +5,42 @@ import com.linkedlistoperations.view.ListPanel;
 
 import java.util.List;
 
-public class ListController<T> {
+public class ListController<T> implements ListChangeListener<T> {
     private final LinkedList<T> model;
     private ListPanel<T> view;
 
     public ListController(LinkedList<T> model) {
         this.model = model;
-        model.addListChangeListener(this::refreshView);
+        model.addListChangeListener(this); // Register listener
+        refreshView(); // Initialize the view
+    }
+    @Override
+    public void onVisit(Node<T> current) {
+        // Optional: Handle visit events if needed
+    }
+
+    @Override
+    public void onInsert(Node<T> newNode, Node<T> prevNode) {
+        refreshView();
+    }
+
+    @Override
+    public void onDelete(Node<T> deletedNode, Node<T> prevNode) {
+        refreshView();
+    }
+
+    @Override
+    public void onLinkChange(Node<T> from, Node<T> to) {
+        refreshView();
+    }
+
+    @Override
+    public void onComplete() {
+        refreshView();
+    }
+    @Override
+    public void onListChanged() {
+        refreshView();
     }
 
     public void setView(ListPanel<T> view) {
@@ -22,8 +51,10 @@ public class ListController<T> {
     private void refreshView() {
         if (view != null) {
             List<Node<T>> nodeList = model.toList();
+//            view.updateList(nodeList);
+//            view.showMessage(""); // clear message
+            System.out.println("View received: " + nodeList);
             view.updateList(nodeList);
-            view.showMessage(""); // clear message
         }
     }
 
@@ -91,6 +122,14 @@ public class ListController<T> {
             } else {
                 view.showMessage("List is empty.");
             }
+        }
+    }
+
+    public void clear() {
+        model.clear();
+        if (view != null) {
+            view.updateList(model.toList());
+            view.showMessage("List cleared.");
         }
     }
 }
