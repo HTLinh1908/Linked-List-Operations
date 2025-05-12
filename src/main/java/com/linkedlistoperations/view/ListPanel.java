@@ -43,6 +43,11 @@ public class ListPanel<T> extends JPanel {
         repaint();
     }
 
+    public void clearHighlight() {
+        this.highlightValue = null;
+        repaint();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -56,7 +61,7 @@ public class ListPanel<T> extends JPanel {
 
         for (AnimationStep<T> step : animationSteps) {
             T value = step.node().getData();
-            boolean isHighlighted = value != null && value.equals(highlightValue);
+            boolean isHighlighted = (value != null && value.equals(highlightValue)) || step.node().isHighlighted();
 
             g2.setColor(isHighlighted ? Color.YELLOW : Color.CYAN);
             g2.fillRoundRect(x, y, 80, 40, 10, 10);

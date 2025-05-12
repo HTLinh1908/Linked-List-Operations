@@ -18,6 +18,8 @@ public class ControlPanel<T> extends JPanel {
     private final JButton detectCycleButton;
     private final JButton clearButton;
     private final JButton SortButton;
+    private final JButton CheckPalidromeButton;
+    private final JButton removeDuplicatedValuesButton;
 
     private final ListController<T> controller;
     private final ListPanel<T> listPanel;
@@ -39,17 +41,21 @@ public class ControlPanel<T> extends JPanel {
         detectCycleButton = new JButton("Detect Cycle");
         clearButton = new JButton("Clear");
         SortButton = new JButton("Sort");
+        CheckPalidromeButton = new JButton("Check Palindrome");
+        removeDuplicatedValuesButton = new JButton("Remove Value");
 
         add(inputField);
         add(insertFrontButton);
         add(insertEndButton);
-        add(removeValueButton);
+        // add(removeValueButton);
+        add(removeDuplicatedValuesButton);
         add(searchButton);
         add(reverseButton);
         add(middleButton);
         // add(detectCycleButton);
         add(clearButton);
         add(SortButton);
+        add(CheckPalidromeButton);
 
         insertFrontButton.addActionListener(this::handleInsertFront);
         insertEndButton.addActionListener(this::handleInsertEnd);
@@ -60,6 +66,8 @@ public class ControlPanel<T> extends JPanel {
         detectCycleButton.addActionListener(e -> controller.detectCycle());
         clearButton.addActionListener(e -> controller.clear());
         SortButton.addActionListener(e -> controller.sort());
+        CheckPalidromeButton.addActionListener(e -> controller.checkPalindrome());
+        removeDuplicatedValuesButton.addActionListener(this::handleRemoveAllValues);
 
         controller.setView(listPanel);
     }
@@ -77,6 +85,11 @@ public class ControlPanel<T> extends JPanel {
     private void handleRemoveValue(ActionEvent e) {
         T value = parseInput();
         if (value != null) controller.removeValue(value);
+    }
+
+    private void handleRemoveAllValues(ActionEvent e) {
+        T value = parseInput();
+        if (value != null) controller.removeDuplicatedValues(value);
     }
 
     private void handleSearch(ActionEvent e) {
