@@ -90,13 +90,23 @@ public class ListController<T> implements ListChangeListener<T> {
         }
     }
 
+    public void removeDuplicatedValues(T value) {
+        boolean success = model.removeDuplicatedValues(value);
+        if (view != null) {
+            view.showMessage(success
+                    ? "Removed all value: " + value
+                    : "Value not found: " + value);
+        }
+    }
+
     public void reverse() {
         model.reverse();
         if (view != null) view.showMessage("List reversed.");
     }
 
     public void sort() {
-        model.sort();
+        view.clearHighlight();
+        model.bubbleSortAnimated();
         if (view != null) view.showMessage("List sorted.");
     }
 
@@ -135,6 +145,13 @@ public class ListController<T> implements ListChangeListener<T> {
         if (view != null) {
             view.updateList(model.toList());
             view.showMessage("List cleared.");
+        }
+    }
+
+    public void checkPalindrome() {
+        boolean isPalindrome = model.checkPalindrome();
+        if (view != null) {
+            view.showMessage(isPalindrome ? "List is a palindrome." : "List is not a palindrome.");
         }
     }
 }
