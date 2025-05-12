@@ -7,7 +7,11 @@ public class Node<T> {
         this.data = data;
         this.next = next;
     }
-    public Node(T data) { }
+    public Node(T data) {
+        this.data = data;
+        System.out.println("Node created with data: " + data);
+        this.next = null;
+    }
     public T getData() {
         return data;
     }
