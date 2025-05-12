@@ -95,6 +95,11 @@ public class ListController<T> implements ListChangeListener<T> {
         if (view != null) view.showMessage("List reversed.");
     }
 
+    public void sort() {
+        model.sort();
+        if (view != null) view.showMessage("List sorted.");
+    }
+
     public void search(T value) {
         List<Node<T>> found = model.search(value);
         if (view != null) {

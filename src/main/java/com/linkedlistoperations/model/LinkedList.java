@@ -97,6 +97,32 @@ public class LinkedList<T> {
         notifyListeners();
     }
 
+    public void sort() {
+        if (head == null || head.next == null) return;
+
+        Node<T> sorted = null;
+        Node<T> current = head;
+
+        while (current != null) {
+            Node<T> next = current.next;
+            if (sorted == null || ((Comparable<T>) current.data).compareTo(sorted.data) <= 0) {
+                current.next = sorted;
+                sorted = current;
+            } else {
+                Node<T> temp = sorted;
+                while (temp.next != null && ((Comparable<T>) current.data).compareTo(temp.next.data) > 0) {
+                    temp = temp.next;
+                }
+                current.next = temp.next;
+                temp.next = current;
+            }
+            current = next;
+        }
+
+        head = sorted;
+        notifyListeners();
+    }
+
     public List<Node<T>> toList() {
         List<Node<T>> result = new ArrayList<>();
         Node<T> temp = head;

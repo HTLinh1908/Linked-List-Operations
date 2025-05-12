@@ -17,6 +17,7 @@ public class ControlPanel<T> extends JPanel {
     private final JButton middleButton;
     private final JButton detectCycleButton;
     private final JButton clearButton;
+    private final JButton SortButton;
 
     private final ListController<T> controller;
     private final ListPanel<T> listPanel;
@@ -37,6 +38,7 @@ public class ControlPanel<T> extends JPanel {
         middleButton = new JButton("Find Middle");
         detectCycleButton = new JButton("Detect Cycle");
         clearButton = new JButton("Clear");
+        SortButton = new JButton("Sort");
 
         add(inputField);
         add(insertFrontButton);
@@ -47,6 +49,7 @@ public class ControlPanel<T> extends JPanel {
         add(middleButton);
         add(detectCycleButton);
         add(clearButton);
+        add(SortButton);
 
         insertFrontButton.addActionListener(this::handleInsertFront);
         insertEndButton.addActionListener(this::handleInsertEnd);
@@ -56,6 +59,7 @@ public class ControlPanel<T> extends JPanel {
         middleButton.addActionListener(e -> controller.findMiddle());
         detectCycleButton.addActionListener(e -> controller.detectCycle());
         clearButton.addActionListener(e -> controller.clear());
+        SortButton.addActionListener(e -> controller.sort());
 
         controller.setView(listPanel);
     }
