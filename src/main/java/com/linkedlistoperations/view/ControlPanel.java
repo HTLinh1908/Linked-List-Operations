@@ -47,7 +47,7 @@ public class ControlPanel<T> extends JPanel {
         add(searchButton);
         add(reverseButton);
         add(middleButton);
-        add(detectCycleButton);
+        // add(detectCycleButton);
         add(clearButton);
         add(SortButton);
 
