@@ -74,6 +74,30 @@ public class LinkedList<T> {
         notifyListeners();
     }
 
+    public T removeFront() {
+        if (head == null) return null;
+        T val = head.data;
+        head = head.next;
+        notifyListeners();
+        return val;
+    }
+
+    public T removeEnd() {
+        if (head == null) return null;
+        if (head.next == null) {
+            T val = head.data;
+            head = null;
+            notifyListeners();
+            return val;
+        }
+        Node<T> temp = head;
+        while (temp.next.next != null) temp = temp.next;
+        T val = temp.next.data;
+        temp.next = null;
+        notifyListeners();
+        return val;
+    }
+
     public void insertAt(int index, T data) {
         if (index <= 0 || head == null) {
             insertFront(data);

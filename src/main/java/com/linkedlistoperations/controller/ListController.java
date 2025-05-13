@@ -66,6 +66,28 @@ public class ListController<T> implements ListChangeListener<T> {
         model.insertEnd(data);
     }
 
+    public void removeFront() {
+        T removed = model.removeFront();
+        if (view != null) {
+            if (removed != null) {
+                view.showMessage("Removed item from front: " + removed);
+            } else {
+                view.showMessage("List is empty.");
+            }
+        }
+    }
+
+    public void removeEnd() {
+        T removed = model.removeEnd();
+        if (view != null) {
+            if (removed != null) {
+                view.showMessage("Removed item from end: " + removed);
+            } else {
+                view.showMessage("List is empty.");
+            }
+        }
+    }
+
     public void insertAt(int index, T data) {
         model.insertAt(index, data);
     }
@@ -131,8 +153,10 @@ public class ListController<T> implements ListChangeListener<T> {
 
     public void findMiddle() {
         Node<T> mid = model.findMiddle();
+        view.clearHighlight();
         if (view != null) {
             if (mid != null) {
+                view.highlightNode(mid);
                 view.showMessage("Middle element: " + mid.getData());
             } else {
                 view.showMessage("List is empty.");
