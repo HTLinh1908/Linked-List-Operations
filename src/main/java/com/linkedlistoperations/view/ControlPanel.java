@@ -11,6 +11,8 @@ public class ControlPanel<T> extends JPanel {
     private final JTextField inputField;
     private final JButton insertFrontButton;
     private final JButton insertEndButton;
+    private final JButton removeFrontButton;
+    private final JButton removeEndButton;
     private final JButton removeValueButton;
     private final JButton searchButton;
     private final JButton reverseButton;
@@ -34,6 +36,8 @@ public class ControlPanel<T> extends JPanel {
 
         insertFrontButton = new JButton("Insert Front");
         insertEndButton = new JButton("Insert End");
+        removeFrontButton = new JButton("Remove Front");
+        removeEndButton = new JButton("Remove End");
         removeValueButton = new JButton("Remove Value");
         searchButton = new JButton("Search");
         reverseButton = new JButton("Reverse");
@@ -47,6 +51,8 @@ public class ControlPanel<T> extends JPanel {
         add(inputField);
         add(insertFrontButton);
         add(insertEndButton);
+        add(removeFrontButton);
+        add(removeEndButton);
         // add(removeValueButton);
         add(removeDuplicatedValuesButton);
         add(searchButton);
@@ -57,8 +63,11 @@ public class ControlPanel<T> extends JPanel {
         add(SortButton);
         add(CheckPalidromeButton);
 
+        inputField.addActionListener(e -> handleInsertEnd(e));
         insertFrontButton.addActionListener(this::handleInsertFront);
         insertEndButton.addActionListener(this::handleInsertEnd);
+        removeFrontButton.addActionListener(this::handleRemoveFront);
+        removeEndButton.addActionListener(this::handleRemoveEnd);
         removeValueButton.addActionListener(this::handleRemoveValue);
         searchButton.addActionListener(this::handleSearch);
         reverseButton.addActionListener(e -> controller.reverse());
@@ -78,8 +87,17 @@ public class ControlPanel<T> extends JPanel {
     }
 
     private void handleInsertEnd(ActionEvent e) {
+        // System.out.println("Enter pressed in input field");
         T value = parseInput();
         if (value != null) controller.insertEnd(value);
+    }
+
+    private void handleRemoveFront(ActionEvent e) {
+        controller.removeFront();
+    }
+
+    private void handleRemoveEnd(ActionEvent e) {
+        controller.removeEnd();
     }
 
     private void handleRemoveValue(ActionEvent e) {

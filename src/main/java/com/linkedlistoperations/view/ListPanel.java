@@ -43,6 +43,15 @@ public class ListPanel<T> extends JPanel {
         repaint();
     }
 
+    public void highlightNode(Node<T> node) {
+        if (node != null) {
+            node.setHighlighted(true);
+        } else {
+            this.highlightValue = null;
+        }
+        repaint();
+    }
+
     public void clearHighlight() {
         this.highlightValue = null;
         repaint();
